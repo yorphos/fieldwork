@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "profileVersion": 1,
+  "id": "fieldwork",
+  "app": "fieldwork",
+  "stateful": true,
+  "components": [
+    {
+      "id": "studio-data",
+      "kind": "store",
+      "required": true,
+      "restoreOwner": "fieldwork",
+      "bindings": [
+        {
+          "type": "directory",
+          "root": "data",
+          "path": "."
+        }
+      ]
+    }
+  ]
+}
