@@ -26,6 +26,13 @@ test("public repertoire is responsive, branded, and keyboard usable", async ({
     path: "test-results/public-" + test.info().project.name + ".png",
     fullPage: true,
   });
+  await page
+    .getByRole("button", { name: "Switch to dark appearance", exact: true })
+    .click();
+  await expect(page.locator("html")).toHaveAttribute("data-pf-theme", "dark");
+  await page
+    .getByRole("button", { name: "Switch to light appearance", exact: true })
+    .click();
   expect(errors).toEqual([]);
 });
 test("account workflow saves, publishes, comments, exports and invites safely", async ({
@@ -153,13 +160,11 @@ test("an account reviews exact email and attachments before one recorded send", 
     .getByRole("button", { name: "Save encrypted connection", exact: true })
     .click();
   await page.keyboard.press("Escape");
-  await page
-    .locator('.project-footer input[type="file"]')
-    .setInputFiles({
-      name: "evidence.txt",
-      mimeType: "text/plain",
-      buffer: Buffer.from("Checked source evidence"),
-    });
+  await page.locator('.project-footer input[type="file"]').setInputFiles({
+    name: "evidence.txt",
+    mimeType: "text/plain",
+    buffer: Buffer.from("Checked source evidence"),
+  });
   await expect(
     page.getByRole("link", { name: "evidence.txt", exact: true }),
   ).toBeVisible();
@@ -205,6 +210,12 @@ test("named client acceptance records verified identity and consent on a publish
     p = await mutate("api/workspaces/" + w.id + "/projects", {
       name: "A proposal for review",
     });
+  await mutate("api/projects/" + p.id + "/files", {
+    name: "client-handoff.txt",
+    mime: "text/plain",
+    bytes: Buffer.from("Shared material").toString("base64"),
+    shared: true,
+  });
   await mutate("api/projects/" + p.id + "/publish", { revision: 1 });
   const i = await mutate("api/workspaces/" + w.id + "/invitations", {
     email: "fixture-client@invalid.test",
@@ -230,6 +241,9 @@ test("named client acceptance records verified identity and consent on a publish
     await client
       .getByRole("button", { name: "A proposal for review", exact: true })
       .click();
+    await expect(
+      client.getByRole("link", { name: "client-handoff.txt", exact: true }),
+    ).toBeVisible();
     await client.getByRole("button", { name: "Review & evidence" }).click();
     await client.getByRole("button", { name: "Review this revision" }).click();
     await client.getByLabel("Your full name").fill("Synthetic Client");
