@@ -1,0 +1,28 @@
+{
+  "source_commit": "b8a84907d27d46962609d079d0fa3e799540dfe6",
+  "library_version": 4,
+  "release_sha256": "500b7d90dc08e7a400914c14449bde273d46afef364b6c1a55b14f60181d63e5",
+  "app": "fieldwork",
+  "files": {
+    "img/dark/fieldwork.svg": {
+      "bytes": 437,
+      "sha256": "dde5c78335aab54111bd1d90ebcd74bf4b06ae4c811caaa01dde8500be1f39e1"
+    },
+    "img/light/fieldwork.svg": {
+      "bytes": 437,
+      "sha256": "1226ff7a4c05e19d1ad3231317d564157d89b21171131cc0bb6e74faccd64b09"
+    },
+    "svg/duotone/fieldwork.svg": {
+      "bytes": 442,
+      "sha256": "343bd507cc615103352a62ab3ef7947d9af5bffe586edc99ba9826e82aebe387"
+    },
+    "svg/filled/fieldwork.svg": {
+      "bytes": 383,
+      "sha256": "2d59427d872391dde5ae1dbec18cb4897ea2d7f390b6c32dcb68ac24630a7fcc"
+    },
+    "svg/outline/fieldwork.svg": {
+      "bytes": 444,
+      "sha256": "338e3d18e9b5a788a2c350463090338f6bee37eb4894326204ea9c70f7b689c8"
+    }
+  }
+}
